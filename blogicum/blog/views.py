@@ -1,18 +1,18 @@
 from django.shortcuts import get_object_or_404, render
 
-from blog.query_sets import category_query_set, posts_query_set
+from blog.query_sets import get_query_set
 
 
 def index(request):
     template = 'blog/index.html'
-    posts = posts_query_set().order_by('-pub_date')[:5]
+    posts = get_query_set('posts').order_by('-pub_date')[:5]
     return render(request, template, {'post_list': posts})
 
 
 def post_detail(request, post_id: int):
     template = 'blog/detail.html'
     post = get_object_or_404(
-        posts_query_set(),
+        get_query_set('posts'),
         pk=post_id
     )
     context = {'post': post}
@@ -21,9 +21,12 @@ def post_detail(request, post_id: int):
 
 def category_posts(request, category_slug: str):
     template = 'blog/category.html'
-    category = get_object_or_404(category_query_set(), slug=category_slug)
+    category = get_object_or_404(
+        get_query_set('categories'),
+        slug=category_slug
+    )
     post_list = (
-        posts_query_set()
+        get_query_set('posts')
         .filter(category__slug=category_slug)
         .order_by('-pub_date')
     )
