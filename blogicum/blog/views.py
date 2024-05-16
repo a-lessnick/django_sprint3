@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render
 
-from blog.models import Category, Post
 from blog.query_sets import category_query_set, posts_query_set
 
 

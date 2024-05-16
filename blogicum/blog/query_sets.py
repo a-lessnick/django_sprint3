@@ -30,11 +30,13 @@ def posts_query_set():
 
 
 def category_query_set():
-    query_set = Category.objects.values(
+    query_set = (
+        Category.objects.values(
             'title',
-            'description'
+            'description',
         ).filter(
-            is_published=True
+            is_published=True,
         )
+    )
 
     return query_set
