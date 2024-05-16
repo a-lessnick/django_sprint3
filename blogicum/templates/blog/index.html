@@ -2,15 +2,11 @@
 {% block title %}
   Лента записей
 {% endblock %}
-{% block content%}
-  <h1>Лента записей</h1>
-  <hr>
-  {% for post in posts_list reversed %}
-    <article>
+{% block content %}
+  <h1 class="mb-5">Лента записей</h1>
+  {% for post in post_list %}
+    <article class="mb-5">  
       {% include "blog/includes/post_card.html" %}
-    </article>
-      {% if not forloop.last %}
-        <hr>
-      {% endif %}
+    </article>   
   {% endfor %}
 {% endblock %}
