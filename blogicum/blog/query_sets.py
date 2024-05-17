@@ -1,4 +1,4 @@
-""" Запросы к базе данных."""
+"""Запросы к базе данных."""
 from django.utils import timezone
 
 from .models import Category, Post
