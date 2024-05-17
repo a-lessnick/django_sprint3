@@ -1,6 +1,4 @@
-"""
-Функции отображения данных для передачи в шаблоны.
-"""
+""" Функции отображения данных для передачи в шаблоны."""
 from django.shortcuts import get_object_or_404, render
 
 from blog.models_constants import POSTS_ON_INDEX

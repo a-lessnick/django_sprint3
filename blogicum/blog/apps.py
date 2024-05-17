@@ -1,6 +1,4 @@
-"""
-Инициализация приложения blog.
-"""
+""" Инициализация приложения blog."""
 from django.apps import AppConfig
 
 

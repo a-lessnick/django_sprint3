@@ -1,6 +1,4 @@
-"""
-Запросы к базе данных.
-"""
+""" Запросы к базе данных."""
 from django.utils import timezone
 
 from .models import Category, Post
@@ -12,7 +10,6 @@ def get_query_set(query_set_name: str):
     :param query_set_name: имя запроса
     :return: соответствующий QuerySet объект
     """
-
     if query_set_name == 'posts':
         query_set = (
             Post.objects.select_related(

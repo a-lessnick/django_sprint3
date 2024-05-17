@@ -1,6 +1,4 @@
-"""
-Модели базы данных приложения blog.
-"""
+""" Модели базы данных приложения blog."""
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -10,9 +8,8 @@ User = get_user_model()
 
 
 class BaseModel(models.Model):
-    """
-    Абстрактная модель с общими полями.
-    """
+    """ Абстрактная модель с общими полями."""
+
     is_published = models.BooleanField(
         default=True,
         verbose_name='Опубликовано',
@@ -28,9 +25,8 @@ class BaseModel(models.Model):
 
 
 class Category(BaseModel):
-    """
-    Категории постов.
-    """
+    """ Категории постов."""
+
     title = models.CharField(max_length=CHAR_FIELD_MAX_LEN,
                              verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
@@ -50,9 +46,8 @@ class Category(BaseModel):
 
 
 class Location(BaseModel):
-    """
-    Местоположения.
-    """
+    """ Местоположения."""
+
     name = models.CharField(max_length=CHAR_FIELD_MAX_LEN,
                             verbose_name='Название места')
 
@@ -65,9 +60,8 @@ class Location(BaseModel):
 
 
 class Post(BaseModel):
-    """
-    Посты.
-    """
+    """ Посты."""
+
     title = models.CharField(max_length=CHAR_FIELD_MAX_LEN,
                              verbose_name='Заголовок')
     text = models.TextField(verbose_name='Текст')
