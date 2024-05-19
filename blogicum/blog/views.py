@@ -2,7 +2,7 @@
 from django.shortcuts import get_object_or_404, render
 
 from blog.models_constants import POSTS_ON_INDEX
-from blog.query_sets import get_query_set
+from blog.query_sets import posts_query_set, categories_query_set
 
 
 def index(request):
@@ -12,7 +12,7 @@ def index(request):
     :return: render объект
     """
     template = 'blog/index.html'
-    posts = get_query_set('posts')[:POSTS_ON_INDEX]
+    posts = posts_query_set()[:POSTS_ON_INDEX]
     return render(request, template, {'post_list': posts})
 
 
@@ -25,7 +25,7 @@ def post_detail(request, post_id: int):
     """
     template = 'blog/detail.html'
     post = get_object_or_404(
-        get_query_set('posts'),
+        posts_query_set(),
         pk=post_id
     )
     context = {'post': post}
@@ -41,11 +41,11 @@ def category_posts(request, category_slug: str):
     """
     template = 'blog/category.html'
     category = get_object_or_404(
-        get_query_set('categories'),
+        categories_query_set(),
         slug=category_slug
     )
     post_list = (
-        get_query_set('posts')
+        posts_query_set()
         .filter(category=category)
     )
     context = {'category': category, 'post_list': post_list}
